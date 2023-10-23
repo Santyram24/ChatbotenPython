@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot en Flask</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Chatbot De Warhammer 40000</h1>
+    <div id="chatbox"></div>
+    <input type="text" id="user_input" placeholder="Que quieres saber de este universo oscuro y decadente...">
+    <button id="submit_button">Enviar</button>
+    <script>
+        document.getElementById('submit_button').addEventListener('click', function() {
+            var user_message = document.getElementById('user_input').value;
+            document.getElementById('user_input').value = "";
+            document.getElementById('chatbox').innerHTML += "<p class='user'>Tú: " + user_message + "</p>";
+            fetch('/get_response', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_message=' + encodeURIComponent(user_message),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('chatbox').innerHTML += "<p class='bot'>Bot: " + data + "</p>";
+            });
+        });
+    </script>
+</body>
+</html>
