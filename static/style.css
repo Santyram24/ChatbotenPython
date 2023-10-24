@@ -15,7 +15,8 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: white;
+    background-color: black;
 }
 
 #chatbox {
@@ -76,3 +77,21 @@ button:hover {
     background-color: #217dbb;
 }
 
+img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 20px;
+}
+
+
+.hemry{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-radius: 20px;
+}
